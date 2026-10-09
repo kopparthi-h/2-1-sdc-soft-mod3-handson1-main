@@ -1,0 +1,15 @@
+tensorflow
+torch
+torchvision
+numpy
+pandas
+matplotlib
+seaborn
+scikit-learn
+joblib
+opencv-python
+pillow
+tqdm
+pyyaml
+pyparsing
+streamlit

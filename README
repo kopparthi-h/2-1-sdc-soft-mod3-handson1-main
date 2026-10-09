@@ -1,0 +1,85 @@
+# Image Classification Project
+
+## Requirements
+
+- Windows, macOS, or Linux
+- Python 3.10 (the pinned TensorFlow version does not support every newer Python version)
+- Git
+
+## Setup on another laptop
+
+Clone the repository and open a terminal in the project folder:
+
+```bash
+git clone https://github.com/Kanojkumar2001/2-1-sdc-soft-mod3-handson1.git
+cd 2-1-sdc-soft-mod3-handson1
+python --version
+python -m venv .venv
+```
+
+Use Python 3.10.x. If `python --version` is not 3.10.x, install Python 3.10 and create the environment with `py -3.10 -m venv .venv` on Windows. Using a fresh virtual environment is important; it prevents packages from another project from causing import errors.
+
+Activate the virtual environment.
+
+Windows PowerShell:
+
+```powershell
+.venv\Scripts\Activate.ps1
+```
+
+Windows Command Prompt:
+
+```bat
+.venv\Scripts\activate.bat
+```
+
+macOS/Linux:
+
+```bash
+source .venv/bin/activate
+```
+
+Install dependencies:
+
+```bash
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+```
+
+## Run the application
+
+```bash
+python -m streamlit run app.py
+```
+
+Then open the URL printed by Streamlit, normally `http://localhost:8501`.
+
+The image quality analysis works without a trained CNN checkpoint. To enable CNN training and prediction, run:
+
+```bash
+python scripts/train_cnn.py
+```
+
+To train the hybrid model:
+
+```bash
+python scripts/train_hybrid.py
+```
+
+The command-line entry point is also available:
+
+```bash
+python main.py --mode predict --image data/test/00_001.png --model hybrid
+```
+
+The commands can be launched from any current directory when you run them from the project folder. Dataset paths in `config/config.yaml` are resolved from the project directory, so they do not depend on a user's laptop-specific absolute path. Keep the dataset in `data/train`, `data/validation`, and `data/test`; TensorFlow datasets may use class folders or files named like `class_image.jpg`.
+
+If TensorFlow reports a dependency import error, recreate the environment and reinstall from `requirements.txt` rather than installing packages into the system Python:
+
+```powershell
+Remove-Item -Recurse -Force .venv
+py -3.10 -m venv .venv
+.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+```
